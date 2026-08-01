@@ -1,7 +1,10 @@
+import ResetPassword from '@/components/auth/ResetPassword.vue';
+import SetNewPassword from '@/components/auth/SetNewPassword.vue';
 import Signin from '@/components/auth/Signin.vue';
 import Signout from '@/components/auth/Signout.vue';
 import Signup from '@/components/auth/Signup.vue';
 import VerifyEmail from '@/components/auth/VerifyEmail.vue';
+import GoogleOAuth from '@/components/google-oauth/GoogleOAuth.vue';
 import Dashboard from '@/components/pages/Dashboard.vue';
 import { createRouter, createWebHistory } from 'vue-router';
 
@@ -31,6 +34,24 @@ const router = createRouter({
       path: '/verify/email',
       name: 'auth.verify.email',
       component: VerifyEmail,
+      meta: { guarded: false },
+    },
+    {
+      path: '/reset-password',
+      name: 'auth.reset-password',
+      component: ResetPassword,
+      meta: { guarded: false },
+    },
+    {
+      path: '/set-new-password',
+      name: 'auth.set-new-password',
+      component: SetNewPassword,
+      meta: { guarded: false },
+    },
+    {
+      path: '/google/oauth/callback',
+      name: 'auth.google.oauth.callback',
+      component: GoogleOAuth,
       meta: { guarded: false },
     },
     {
