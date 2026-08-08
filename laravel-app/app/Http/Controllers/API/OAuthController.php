@@ -9,11 +9,11 @@ use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 class GoogleOAuthController extends Controller
 {
-    function googleOAuthRedirect(Request $request)
+    function googleOAuthRedirect(Request $request, $drive)
     {
         $callback_url = $request->query('callback_url', '');
 
-        $redirectUrl = Socialite::driver('google')
+        $redirectUrl = Socialite::driver($drive)
             ->stateless()
             ->with(['state' => base64_encode($callback_url)])
             ->redirect()
@@ -22,19 +22,20 @@ class GoogleOAuthController extends Controller
         return response(['redirect_url' => $redirectUrl], 200);
     }
 
-    function googleOAuthCallback(Request $request)
+    function googleOAuthCallback(Request $request, $drive)
     {
         $callback_url = base64_decode($request->query('state', ''));
+
         try {
-            $googleUser = Socialite::driver('google')->stateless()->user();
+            $oauthUser = Socialite::driver($drive)->stateless()->user();
         } catch (\Exception $e) {
-            return redirect($callback_url . '?error=google_oauth_failed');
+            return redirect($callback_url . '?error=' . $drive . '_oauth_failed');
         }
 
         $user = User::firstOrCreate(
-            ['email' => $googleUser->getEmail()],
+            ['email' => $oauthUser->getEmail()],
             [
-                'name' => $googleUser->getName(),
+                'name' => $oauthUser->getName(),
             ]
         );
 

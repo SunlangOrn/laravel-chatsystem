@@ -88,7 +88,7 @@
 import { reactive, ref } from "vue";
 import { apiSignUp, apiSendVerificationEmail } from "@/functions/api/auth";
 import { LoadingModal, MessageModal, CloseModal } from "@/functions/swal";
-import { apiGoogleOAuthRedirect } from "@/functions/api/google-oauth";
+import { apiGoogleOAuthRedirect } from "@/functions/api/oauth";
 
 const user = reactive({
   name: "",

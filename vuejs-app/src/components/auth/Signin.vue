@@ -63,7 +63,7 @@ import { reactive } from "vue";
 import { apiSignIn } from "@/functions/api/auth";
 import { LoadingModal, MessageModal, CloseModal } from "@/functions/swal";
 import { useUserStore } from "@/stores/user";
-import { apiGoogleOAuthRedirect } from "@/functions/api/google-oauth";
+import { apiGoogleOAuthRedirect } from "@/functions/api/oauth";
 
 const router = useRouter();
 const userStore = useUserStore();

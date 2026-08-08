@@ -3,7 +3,7 @@
 import { onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 import { LoadingModal, MessageModal, CloseModal } from "@/functions/swal";
-import { apiGoogleOAuthExchangeToken } from "@/functions/api/google-oauth";
+import { apiGoogleOAuthExchangeToken } from "@/functions/api/oauth";
 import { useUserStore } from "@/stores/user";
 import { useRouter } from 'vue-router';
 
